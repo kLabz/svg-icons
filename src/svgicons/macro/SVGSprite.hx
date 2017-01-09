@@ -26,7 +26,8 @@ class SVGSprite {
 			var iconPath = path + "/" + icon;
 
 			#if USE_SVGO
-				var process = new Process("./node_modules/svgo/bin/svgo", ["-i", iconPath, "-o", "-"]);
+				var configPath = Context.resolvePath("../svgo.yml");
+				var process = new Process("./node_modules/svgo/bin/svgo", ["-i", iconPath, "-o", "-", "--config", configPath]);
 				var iconData = process.stdout.readLine();
 			#else
 				var iconData = File.getContent(path + "/" + icon);
