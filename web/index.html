@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>SVG Icons demo</title>
-    <link rel="stylesheet" type="text/css" href="css/svg-icons.css" />
-    <script src="js/native-shim.js"></script>
-    <script src="js/svg-icons.js"></script>
+	<meta charset="UTF-8">
+	<title>SVG Icons demo</title>
+	<link rel="stylesheet" type="text/css" href="css/svg-icons.css" />
+	<script src="js/native-shim.js"></script>
+	<script src="js/svg-icons.js"></script>
 
-    <script>
-        // DEMO
-        function demo() {
-            document.removeEventListener("DOMContentLoaded", demo);
+	<script>
+		// DEMO
+		function demo() {
+			document.removeEventListener("DOMContentLoaded", demo);
 
-            var svgIcon = document.querySelector("#svg-icon");
-            var svgName = document.querySelector("#svg-name");
+			var svgIcon = document.querySelector("#svg-icon");
+			var svgName = document.querySelector("#svg-name");
 
-            var icons = [
-                // "default",
-                "unknown-icon",
-                "bin", "cart", "people", "search",
-                "social-fb", "social-g+", "social-pint", "social-twitter"
-            ];
-            var i = 0;
+			var icons = [
+				// "default",
+				"unknown-icon",
+				"bin", "cart", "people", "search",
+				"social-fb", "social-g+", "social-pint", "social-twitter"
+			];
+			var i = 0;
 
-            window.setInterval(function() {
-                i = (i + 1) % icons.length;
+			window.setInterval(function() {
+				i = (i + 1) % icons.length;
 
-                svgIcon.setAttribute("icon", icons[i]);
-                svgName.innerHTML = icons[i];
-            }, 1000);
-        }
+				svgIcon.setAttribute("icon", icons[i]);
+				svgName.innerHTML = icons[i];
+			}, 1000);
+		}
 
-        document.addEventListener("DOMContentLoaded", demo);
+		document.addEventListener("DOMContentLoaded", demo);
 
-    </script>
+	</script>
 </head>
 <body>
 
-    <svg-icon icon="" id="svg-icon"></svg-icon>
-    <h3 id="svg-name"></h3>
+	<svg-icon icon="" id="svg-icon"></svg-icon>
+	<h3 id="svg-name"></h3>
 
-    <div class="bg-demo"></div>
+	<div class="bg-demo"></div>
 
 </body>
 </html>
