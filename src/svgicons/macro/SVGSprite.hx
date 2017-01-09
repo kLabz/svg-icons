@@ -5,6 +5,7 @@ import haxe.macro.Context;
 import haxe.macro.Expr;
 import sys.FileSystem;
 import sys.io.File;
+import sys.io.Process;
 
 using StringTools;
 
@@ -22,9 +23,14 @@ class SVGSprite {
 
 		for (icon in icons) {
 			var iconName = icon.replace(".svg", "");
+			var iconPath = path + "/" + icon;
 
-			// TODO: use svgo?
-			var iconData = File.getContent(path + "/" + icon);
+			#if USE_SVGO
+				var process = new Process("./node_modules/svgo/bin/svgo", ["-i", iconPath, "-o", "-"]);
+				var iconData = process.stdout.readLine();
+			#else
+				var iconData = File.getContent(path + "/" + icon);
+			#end
 
 			iconsMap.push(macro $v{iconName} => $v{iconData});
 

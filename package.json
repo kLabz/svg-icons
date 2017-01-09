@@ -1,0 +1,17 @@
+{
+  "name": "svg-icons",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kLabz/svg-icons.git"
+  },
+  "author": {
+    "name": "kLabz",
+    "email": "k@klabz.org"
+  },
+  "dependencies": {
+    "svgo": "^0.7.1"
+  }
+}
