@@ -9,12 +9,21 @@ svg-icon {
 }
 
 svg-icon path {
-	fill: #D80;
+	fill: #888;
 }
 
 h3 {
 	margin: auto;
 	color: #888;
 	font-size: 1.6em;
+	line-height: 2em;
+	min-height: 2em;
 	text-align: center;
+}
+
+.bg-demo {
+	margin: 50px auto;
+	width: 400px;
+	height: 200px;
+	background: #EEE url(../img/svg-backgrounds.svg#social-twitter-bg);
 }

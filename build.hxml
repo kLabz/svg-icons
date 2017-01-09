@@ -10,8 +10,9 @@
 
 # -D DEBUG_COMPONENTS
 -D NO_HTMLCOMPONENT_KEEPSUB
--D SVG_PATH=../img
 -D USE_SVGO
+-D SVG_PATH=../img
+-D SVG_SPRITE_OUTPUT=../web/img/
 
 --macro include('svgicons.html', true)
 --macro org.tamina.macro.BuildInspector.inspect(['svgicons'])

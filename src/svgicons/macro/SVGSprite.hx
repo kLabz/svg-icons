@@ -21,9 +21,21 @@ class SVGSprite {
 		var iconsMap = new Array<Expr>();
 		var icons = FileSystem.readDirectory(path);
 
+		#if SVG_SPRITE_OUTPUT
+		var spriteOutput:String = '<svg xmlns="http://www.w3.org/2000/svg">' +
+		'<defs><style>svg { display: none; } svg:target { display: inline; }</style></defs>';
+
+		var svgIdReg = ~/^\s*<svg(.*)(\sid=("|')[a-zA-Z0-9_-]+("|'))/;
+
+		#end
+
 		for (icon in icons) {
 			var iconName = icon.replace(".svg", "");
 			var iconPath = path + "/" + icon;
+
+			#if SVG_SPRITE_OUTPUT
+				var isBG:Bool = iconName.endsWith("-bg");
+			#end
 
 			#if USE_SVGO
 				var configPath = Context.resolvePath("../svgo.yml");
@@ -33,12 +45,30 @@ class SVGSprite {
 				var iconData = File.getContent(path + "/" + icon);
 			#end
 
-			iconsMap.push(macro $v{iconName} => $v{iconData});
+			#if SVG_SPRITE_OUTPUT
+				if (isBG) {
+					if (svgIdReg.match(iconData)) {
+						iconData = svgIdReg.replace(iconData, '<svg$1');
+					}
 
-			// TODO: handle "bg" icons
+					iconData = iconData.replace('<svg ', '<svg id="' + iconName + '" ');
+					spriteOutput += iconData;
+				} else {
+			#end
+					iconsMap.push(macro $v{iconName} => $v{iconData});
+			#if SVG_SPRITE_OUTPUT
+				}
+			#end
 		}
 
-		// TODO: create svg sprite from bg icons
+		#if SVG_SPRITE_OUTPUT
+			spriteOutput += '</svg>';
+
+			var spritePath = Context.resolvePath(Compiler.getDefine("SVG_SPRITE_OUTPUT")) + "svg-backgrounds.svg";
+			var file = File.write(spritePath);
+			file.writeString(spriteOutput);
+			file.close();
+		#end
 
 		fields.push({
 			pos: Context.currentPos(),
