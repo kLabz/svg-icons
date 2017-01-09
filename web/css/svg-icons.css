@@ -1,0 +1,13 @@
+svg-icon {
+	display: block;
+	width: 200px;
+	height: 200px;
+	padding: 10px;
+	margin: 100px auto;
+	box-sizing: content-box;
+	background: #EEE;
+}
+
+svg-icon path {
+	fill: #D80;
+}

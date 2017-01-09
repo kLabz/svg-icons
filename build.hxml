@@ -1,0 +1,15 @@
+-version
+
+--next
+-main svgicons.html.SVGApp
+-dce full
+-cp src
+# -lib mconsole
+# -lib msignal
+-lib taminahx
+# -D DEBUG_COMPONENTS
+-D NO_HTMLCOMPONENT_KEEPSUB
+-D SVG_PATH=../img
+--macro include('svgicons.html', true)
+--macro org.tamina.macro.BuildInspector.inspect(['svgicons'])
+-js web/js/svg-icons.js
