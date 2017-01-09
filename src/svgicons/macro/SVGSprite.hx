@@ -23,7 +23,7 @@ class SVGSprite {
 
 		#if SVG_SPRITE_OUTPUT
 		var spriteOutput:String = '<svg xmlns="http://www.w3.org/2000/svg">' +
-		'<defs><style>svg { display: none; } svg:target { display: inline; }</style></defs>';
+		'<defs><style>svg svg { display: none; } svg svg:target { display: inline; }</style></defs>';
 
 		var svgIdReg = ~/^\s*<svg(.*)(\sid=("|')[a-zA-Z0-9_-]+("|'))/;
 
