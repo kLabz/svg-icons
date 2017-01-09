@@ -3,11 +3,18 @@ svg-icon {
 	width: 200px;
 	height: 200px;
 	padding: 10px;
-	margin: 100px auto;
+	margin: 100px auto 20px;
 	box-sizing: content-box;
 	background: #EEE;
 }
 
 svg-icon path {
 	fill: #D80;
+}
+
+h3 {
+	margin: auto;
+	color: #888;
+	font-size: 1.6em;
+	text-align: center;
 }

@@ -30,6 +30,8 @@ class SVGIcon extends HTMLComponent {
                 svg.setAttribute("width", "100%");
                 svg.setAttribute("height", "100%");
             }
+        } else {
+            if (iconName != "default") loadIcon("default");
         }
     }
 
