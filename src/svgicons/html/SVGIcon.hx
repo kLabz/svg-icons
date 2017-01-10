@@ -35,8 +35,8 @@ class SVGIcon extends HTMLComponent {
 	}
 
 	private function loadIcon(iconName:String, ?isAlt:Bool = false):Void {
-		if (icons.exists(iconName)) {
-			innerHTML = icons.get(iconName);
+		if (Reflect.hasField(icons, iconName)) {
+			innerHTML = Reflect.field(icons, iconName);
 			_iconNotFound = false;
 
 			var svg = querySelector("svg");

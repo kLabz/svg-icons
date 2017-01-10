@@ -18,7 +18,7 @@ class SVGSprite {
 	path = Context.resolvePath(path);
 
 	if (FileSystem.exists(path)) {
-		var iconsMap = new Array<Expr>();
+		var iconsMap:Dynamic = {};
 		var icons = FileSystem.readDirectory(path);
 		var hasDefaultIcon:Bool = false;
 
@@ -57,7 +57,7 @@ class SVGSprite {
 				} else {
 			#end
 					if (iconName == "default") hasDefaultIcon = true;
-					iconsMap.push(macro $v{iconName} => $v{iconData});
+					Reflect.setField(iconsMap, iconName, iconData);
 			#if SVG_SPRITE_OUTPUT
 				}
 			#end
@@ -85,7 +85,7 @@ class SVGSprite {
 			pos: Context.currentPos(),
 			name: "icons",
 			meta: null,
-			kind: FieldType.FVar(macro: Map<String, String>, macro $a{iconsMap}),
+			kind: FieldType.FVar(macro: Dynamic, macro $v{iconsMap}),
 			doc: null,
 			access: [Access.APrivate, Access.AStatic]
 		});
