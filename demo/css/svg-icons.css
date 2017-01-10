@@ -6,9 +6,6 @@ svg-icon {
 	margin: 100px auto 20px;
 	box-sizing: content-box;
 	background: #EEE;
-}
-
-svg-icon path {
 	fill: #888;
 }
 
