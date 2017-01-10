@@ -11,11 +11,11 @@
 # -D DEBUG_COMPONENTS
 -D NO_HTMLCOMPONENT_KEEPSUB
 -D USE_SVGO
--D SVG_PATH=../img
--D SVG_SPRITE_OUTPUT=../web/img/
+-D SVG_PATH=../demo/svg-sources
+-D SVG_SPRITE_OUTPUT=../demo/img/
 
 --macro include('svgicons.html', true)
 --macro org.tamina.macro.BuildInspector.inspect(['svgicons'])
 
 -main svgicons.html.SVGApp
--js web/js/svg-icons.js
+-js demo/js/svg-icons.js
