@@ -3,10 +3,7 @@
 --next
 -dce full
 -cp src
-
-# -lib mconsole
-# -lib msignal
--lib taminahx
+-cp node_modules/taminahx
 
 # -D DEBUG_COMPONENTS
 -D NO_HTMLCOMPONENT_KEEPSUB
