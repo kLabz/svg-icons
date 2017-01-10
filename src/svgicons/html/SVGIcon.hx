@@ -7,23 +7,37 @@ import org.tamina.html.component.HTMLComponent;
 @:build(svgicons.macro.SVGSprite.buildSVGSprite())
 class SVGIcon extends HTMLComponent {
 
+	private var _alt:String;
+	private var _iconNotFound:Bool;
+
 	private static function getObservedAttributes():Array<String> {
-		return ["icon"];
+		return ["alt", "icon"];
+	}
+
+	private function new() {
+		super();
+
+		_alt = "";
+		_iconNotFound = false;
 	}
 
 	override private function attributeChangedCallback(attrName:String, oldVal:String, newVal:String):Void {
 		super.attributeChangedCallback(attrName, oldVal, newVal);
 
-		if (attrName == "icon") {
+		switch (attrName) {
+			case "alt":
+			_alt = newVal;
+			updateAlt();
+
+			case "icon":
 			loadIcon(newVal);
 		}
 	}
 
-	private function loadIcon(iconName:String):Void {
-		innerHTML = "";
-
+	private function loadIcon(iconName:String, ?isAlt:Bool = false):Void {
 		if (icons.exists(iconName)) {
 			innerHTML = icons.get(iconName);
+			_iconNotFound = false;
 
 			var svg = querySelector("svg");
 			if (svg != null) {
@@ -31,7 +45,19 @@ class SVGIcon extends HTMLComponent {
 				svg.setAttribute("height", "100%");
 			}
 		} else {
-			if (iconName != "default") loadIcon("default");
+			_iconNotFound = true;
+
+			if (hasDefaultIcon) {
+				loadIcon("default", true);
+			} else {
+				updateAlt();
+			}
+		}
+	}
+
+	private function updateAlt():Void {
+		if (_iconNotFound) {
+			innerHTML = '<span class="alt">' + _alt + '</span>';
 		}
 	}
 

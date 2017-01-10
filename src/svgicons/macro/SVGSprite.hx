@@ -20,6 +20,7 @@ class SVGSprite {
 	if (FileSystem.exists(path)) {
 		var iconsMap = new Array<Expr>();
 		var icons = FileSystem.readDirectory(path);
+		var hasDefaultIcon:Bool = false;
 
 		#if SVG_SPRITE_OUTPUT
 		var spriteOutput:String = '<svg xmlns="http://www.w3.org/2000/svg">' +
@@ -55,6 +56,7 @@ class SVGSprite {
 					spriteOutput += iconData;
 				} else {
 			#end
+					if (iconName == "default") hasDefaultIcon = true;
 					iconsMap.push(macro $v{iconName} => $v{iconData});
 			#if SVG_SPRITE_OUTPUT
 				}
@@ -69,6 +71,15 @@ class SVGSprite {
 			file.writeString(spriteOutput);
 			file.close();
 		#end
+
+		fields.push({
+			pos: Context.currentPos(),
+			name: "hasDefaultIcon",
+			meta: null,
+			kind: FieldType.FVar(macro: Bool, macro $v{hasDefaultIcon}),
+			doc: null,
+			access: [Access.APrivate, Access.AStatic]
+		});
 
 		fields.push({
 			pos: Context.currentPos(),
