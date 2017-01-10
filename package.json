@@ -12,6 +12,7 @@
     "email": "k@klabz.org"
   },
   "dependencies": {
-    "svgo": "^0.7.1"
+    "svgo": "^0.7.1",
+    "taminahx": "damoebius/taminahx#webcomponentsv1"
   }
 }
