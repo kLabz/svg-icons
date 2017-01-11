@@ -2,13 +2,12 @@
 
 --next
 -dce full
--cp src
 
-# -lib mconsole
-# -lib msignal
+-cp src
 -lib taminahx
 
 # -D DEBUG_COMPONENTS
+# -D WARN_FOR_MISSING_COMPONENTS
 -D NO_HTMLCOMPONENT_KEEPSUB
 -D USE_SVGO
 -D SVG_PATH=../demo/svg-sources
@@ -16,5 +15,5 @@
 
 --macro include('svgicons.html', true)
 
--main svgicons.html.SVGApp
+# -main svgicons.html.SVGApp
 -js demo/js/svg-icons.js
